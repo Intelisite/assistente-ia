@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 exports.handleChat = async (req, res) => {
-  const { message } = req.body;
+  const { message, openai_key } = req.body;
 
   try {
     const response = await axios.post(
@@ -12,7 +12,7 @@ exports.handleChat = async (req, res) => {
       },
       {
         headers: {
-          'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
+          'Authorization': `Bearer ${openai_key}`,
           'Content-Type': 'application/json',
         }
       }
