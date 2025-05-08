@@ -3,6 +3,10 @@ const axios = require('axios');
 exports.handleChat = async (req, res) => {
   const { message, openai_key } = req.body;
 
+  if (!openai_key || !message) {
+    return res.status(400).json({ error: 'Chave de API ou mensagem ausente.' });
+  }
+
   try {
     const response = await axios.post(
       'https://api.openai.com/v1/chat/completions',
@@ -22,7 +26,7 @@ exports.handleChat = async (req, res) => {
     res.json({ reply });
 
   } catch (error) {
-    console.error(error.response?.data || error.message);
+    console.error('Erro da OpenAI:', error.response?.data || error.message);
     res.status(500).json({ error: 'Erro ao processar a mensagem.' });
   }
 };
