@@ -20,9 +20,11 @@ app.listen(PORT, () => {
 });
 const cors = require('cors');
 
+// Permite requisições de qualquer origem (versão pública)
 app.use(cors({
-  origin: '*', // Libera para qualquer domínio
+  origin: '*',
   methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
 
