@@ -1,12 +1,12 @@
 const axios = require('axios');
 
 exports.handleChat = async (req, res) => {
-  console.log("📥 Dados recebidos no backend:", req.body); // ✅ debug
-  const { message, openai_key } = req.body;
-  
+  console.log("📥 Dados recebidos no backend:", req.body);
 
-  if (!message || !openai_key) {
-    return res.status(400).json({ error: 'Chave de API ou mensagem ausente.' });
+  const { messages, openai_key } = req.body;
+
+  if (!messages || !Array.isArray(messages) || !openai_key) {
+    return res.status(400).json({ error: 'Chave de API ou mensagens ausentes.' });
   }
 
   try {
@@ -14,7 +14,7 @@ exports.handleChat = async (req, res) => {
       'https://api.openai.com/v1/chat/completions',
       {
         model: 'gpt-3.5-turbo',
-        messages: [{ role: 'user', content: message }],
+        messages: messages,
       },
       {
         headers: {
