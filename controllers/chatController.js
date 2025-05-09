@@ -4,7 +4,7 @@ exports.handleChat = async (req, res) => {
   const { message, openai_key } = req.body;
 
   if (!message || !openai_key) {
-    return res.status(400).json({ error: 'Mensagem ou chave de API ausente.' });
+    return res.status(400).json({ error: 'Chave de API ou mensagem ausente.' });
   }
 
   try {
