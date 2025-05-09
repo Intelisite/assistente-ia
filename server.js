@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const chatController = require('./controllers/chatController');
 
 const app = express();
-const PORT = process.env.PORT; || 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -18,7 +18,6 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
-const cors = require('cors');
 
 // Permite requisições de qualquer origem (versão pública)
 app.use(cors({
