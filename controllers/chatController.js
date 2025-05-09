@@ -1,9 +1,9 @@
 const axios = require('axios');
 
 exports.handleChat = async (req, res) => {
+  console.log("📥 Dados recebidos no backend:", req.body); // ✅ debug
   const { message, openai_key } = req.body;
-  console.log("REQUISIÇÃO RECEBIDA:", req.body);
-
+  
 
   if (!message || !openai_key) {
     return res.status(400).json({ error: 'Chave de API ou mensagem ausente.' });
