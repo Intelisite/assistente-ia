@@ -18,3 +18,11 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
+const cors = require('cors');
+
+app.use(cors({
+  origin: '*', // Libera para qualquer domínio
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
